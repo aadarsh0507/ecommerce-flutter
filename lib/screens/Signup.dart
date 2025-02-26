@@ -32,8 +32,8 @@ class _SignupPageState extends State<SignupPage> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
 
-  bool _passwordVisible = false;
-  bool _confirmPasswordVisible = false;
+  final bool _passwordVisible = false;
+  final bool _confirmPasswordVisible = false;
   bool _isLoading = false;
 
   Future<void> signupUser() async {
