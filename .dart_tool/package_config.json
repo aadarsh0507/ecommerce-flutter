@@ -392,6 +392,24 @@
       "languageVersion": "3.5"
     },
     {
+      "name": "uni_links",
+      "rootUri": "file:///C:/Users/IT/AppData/Local/Pub/Cache/hosted/pub.dev/uni_links-0.5.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "uni_links_platform_interface",
+      "rootUri": "file:///C:/Users/IT/AppData/Local/Pub/Cache/hosted/pub.dev/uni_links_platform_interface-1.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "uni_links_web",
+      "rootUri": "file:///C:/Users/IT/AppData/Local/Pub/Cache/hosted/pub.dev/uni_links_web-0.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "vector_math",
       "rootUri": "file:///C:/Users/IT/AppData/Local/Pub/Cache/hosted/pub.dev/vector_math-2.1.4",
       "packageUri": "lib/",
@@ -422,7 +440,7 @@
       "languageVersion": "3.7"
     }
   ],
-  "generated": "2025-02-26T05:42:20.271821Z",
+  "generated": "2025-02-27T11:53:23.366184Z",
   "generator": "pub",
   "generatorVersion": "3.7.0",
   "flutterRoot": "file:///C:/flutter",

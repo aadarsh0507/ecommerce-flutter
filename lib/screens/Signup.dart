@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:ecommerce/screens/Login.dart';
-import 'package:ecommerce/screens/VerifyEmail.dart'; // New verification screen
+import 'package:ecommerce/screens/VerifyEmail.dart'; // Email verification screen
 import 'package:flutter/material.dart';
 import '../api.dart';
 
@@ -32,8 +32,8 @@ class _SignupPageState extends State<SignupPage> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
 
-  final bool _passwordVisible = false;
-  final bool _confirmPasswordVisible = false;
+  bool _passwordVisible = false;
+  bool _confirmPasswordVisible = false;
   bool _isLoading = false;
 
   Future<void> signupUser() async {
@@ -100,83 +100,87 @@ class _SignupPageState extends State<SignupPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Container(
-          padding: const EdgeInsets.all(24),
-          margin: const EdgeInsets.symmetric(horizontal: 32),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.1),
-                blurRadius: 8,
-                spreadRadius: 3,
-              ),
-            ],
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                padding: const EdgeInsets.all(16),
-                decoration: const BoxDecoration(
-                  color: Colors.deepPurple,
-                  shape: BoxShape.circle,
-                ),
-                child: const Icon(Icons.person_add, size: 50, color: Colors.white),
-              ),
-              const SizedBox(height: 20),
-              const Text(
-                "Create Account",
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.deepPurple,
-                ),
-              ),
-              const SizedBox(height: 5),
-              const Text(
-                "Sign up to get started",
-                style: TextStyle(fontSize: 16, color: Colors.grey),
-              ),
-              const SizedBox(height: 20),
-
-              buildTextField("Full Name", Icons.person, nameController),
-              const SizedBox(height: 10),
-              buildTextField("Phone Number", Icons.phone, phoneController, keyboardType: TextInputType.phone),
-              const SizedBox(height: 10),
-              buildTextField("Email", Icons.email, emailController),
-              const SizedBox(height: 10),
-              buildPasswordField("Password", passwordController, true),
-              const SizedBox(height: 10),
-              buildPasswordField("Confirm Password", confirmPasswordController, false),
-              const SizedBox(height: 20),
-
-              ElevatedButton(
-                onPressed: _isLoading ? null : signupUser,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.deepPurple,
-                  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Center(
+            child: Container(
+              padding: const EdgeInsets.all(24),
+              margin: const EdgeInsets.symmetric(horizontal: 32),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    blurRadius: 8,
+                    spreadRadius: 3,
                   ),
-                ),
-                child: _isLoading
-                    ? const CircularProgressIndicator(color: Colors.white)
-                    : const Text("Sign Up", style: TextStyle(fontSize: 18, color: Colors.white)),
+                ],
               ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(16),
+                    decoration: const BoxDecoration(
+                      color: Colors.deepPurple,
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(Icons.person_add, size: 50, color: Colors.white),
+                  ),
+                  const SizedBox(height: 20),
+                  const Text(
+                    "Create Account",
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.deepPurple,
+                    ),
+                  ),
+                  const SizedBox(height: 5),
+                  const Text(
+                    "Sign up to get started",
+                    style: TextStyle(fontSize: 16, color: Colors.grey),
+                  ),
+                  const SizedBox(height: 20),
 
-              const SizedBox(height: 10),
+                  buildTextField("Full Name", Icons.person, nameController),
+                  const SizedBox(height: 10),
+                  buildTextField("Phone Number", Icons.phone, phoneController, keyboardType: TextInputType.phone),
+                  const SizedBox(height: 10),
+                  buildTextField("Email", Icons.email, emailController),
+                  const SizedBox(height: 10),
+                  buildPasswordField("Password", passwordController, true),
+                  const SizedBox(height: 10),
+                  buildPasswordField("Confirm Password", confirmPasswordController, false),
+                  const SizedBox(height: 20),
 
-              TextButton(
-                onPressed: navigateToLogin,
-                child: const Text(
-                  "Already have an account? Login",
-                  style: TextStyle(color: Colors.deepPurple),
-                ),
+                  ElevatedButton(
+                    onPressed: _isLoading ? null : signupUser,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.deepPurple,
+                      padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    child: _isLoading
+                        ? const CircularProgressIndicator(color: Colors.white)
+                        : const Text("Sign Up", style: TextStyle(fontSize: 18, color: Colors.white)),
+                  ),
+
+                  const SizedBox(height: 10),
+
+                  TextButton(
+                    onPressed: navigateToLogin,
+                    child: const Text(
+                      "Already have an account? Login",
+                      style: TextStyle(color: Colors.deepPurple),
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
       ),
@@ -207,6 +211,21 @@ class _SignupPageState extends State<SignupPage> {
         filled: true,
         fillColor: Colors.grey.shade200,
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
+        suffixIcon: IconButton(
+          icon: Icon(
+            isPassword ? (_passwordVisible ? Icons.visibility : Icons.visibility_off) : (_confirmPasswordVisible ? Icons.visibility : Icons.visibility_off),
+            color: Colors.deepPurple,
+          ),
+          onPressed: () {
+            setState(() {
+              if (isPassword) {
+                _passwordVisible = !_passwordVisible;
+              } else {
+                _confirmPasswordVisible = !_confirmPasswordVisible;
+              }
+            });
+          },
+        ),
       ),
     );
   }
